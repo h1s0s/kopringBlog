@@ -1,0 +1,58 @@
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="~{/includes/header :: copy}"></head>
+<body>
+<div id="wrap">
+  <div th:replace="~{/includes/blog-header :: copy}"></div>
+
+  <div id="content">
+    <ul id="admin-menu" class="clearfix">
+      <li class="tabbtn"><a href="${pageContext.request.contextPath}/${sessionScope.authUser.id}/admin/basic">기본설정</a></li>
+      <li class="tabbtn"><a href="${pageContext.request.contextPath}/${sessionScope.authUser.id}/admin/category">카테고리</a></li>
+      <li class="tabbtn selected"><a href="${pageContext.request.contextPath}/${sessionScope.authUser.id}/admin/writeForm">글작성</a></li>
+    </ul>
+    <!-- //admin-menu -->
+
+    <div id="admin-content">
+      <form action="${pageContext.request.contextPath}/post/write" method="post">
+        <table id="admin-write">
+          <colgroup>
+            <col style="width: 100px;">
+            <col style="">
+            <col style="">
+          </colgroup>
+          <tr>
+            <td class="t">포스트 제목</td>
+            <td >
+              <input type="text" name="postTitle">
+
+            </td>
+            <td>
+              <select name="cateNo">
+                <!-- 카테고리 리스트 영역 -->
+                <c:forEach items="${requestScope.categoryList}" var="vo">
+                  <option value="${vo.cateNo}">${vo.cateName}</option>
+                </c:forEach>
+                <!-- 카테고리 리스트 영역 -->
+              </select>
+            </td>
+          </tr>
+          <tr>
+            <td>내용</td>
+            <td colspan="2"><textarea name="postContent"></textarea></td>
+          </tr>
+        </table>
+        <input type="hidden" name="id" value="${sessionScope.authUser.id}">
+        <div id="btnArea">
+          <button class="btn_l" type="submit" >포스트하기</button>
+        </div>
+      </form>
+
+    </div>
+    <!-- //admin-content -->
+  </div>
+  <!-- //content -->
+  <div th:replace="~{/includes/blog-footer :: copy}"></div>
+</div>
+<!-- //wrap -->
+</body>
+</html>

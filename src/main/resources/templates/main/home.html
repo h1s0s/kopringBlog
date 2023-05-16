@@ -1,28 +1,8 @@
 <html xmlns:th="http://www.thymeleaf.org">
-<head>
-    <meta charset="UTF-8">
-    <!-- css -->
-    <link th:href="@{/bootstrap/css/bootstrap.css}" rel="stylesheet" type="text/css">
-    <link rel="stylesheet" th:href="@{/css/jblog.css}">
-
-    <!-- 자바스크립트 -->
-    <script type="text/javascript" th:src="@{/jquery/jquery-1.12.4.js}"></script>
-    <script type="text/javascript" th:src="@{/bootstrap/js/bootstrap.js}"></script>
-
-    <title>JBlog</title>
-</head>
+<head th:replace="~{/includes/header :: copy}"></head>
 <body>
     <div id="center-content">
-        <a href="/"> <img class="logo" th:src="@{/media/logo.jpg}" src="/assets/media/logo.jpg">
-        </a>
-        <ul class="menu" th:if="${session.authUser == null}">
-            <li><a href="/user/loginForm">로그인</a></li>
-            <li><a href="/user/joinForm">회원가입</a></li>
-        </ul>
-        <ul class="menu" th:if="${session.authUser != null}">
-            <li><a href="/user/logout">로그아웃</a></li>
-            <li><a href="">내블로그</a></li>
-        </ul>
+        <div th:replace="~{/includes/main-header :: copy}"></div>
 
         <form id="search-form">
             <fieldset>
@@ -38,6 +18,8 @@
                 <input id="rdo-userName" type="radio" name="kwdOpt" value="optName" >
             </fieldset>
         </form>
+
+        <div th:replace="~{/includes/main-footer :: copy}"></div>
     </div>
 </body>
 </html>

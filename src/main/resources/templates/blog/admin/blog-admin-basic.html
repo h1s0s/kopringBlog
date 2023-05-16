@@ -1,0 +1,50 @@
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="~{/includes/header :: copy}"></head>
+<body>
+<div id="wrap">
+
+  <!-- 개인블로그 해더 -->
+  <div th:replace="~{/includes/blog-header :: copy}"></div>
+
+  <div id="content">
+    <ul id="admin-menu" class="clearfix">
+      <li class="tabbtn selected"><a href="${pageContext.request.contextPath}/${sessionScope.authUser.id}/admin/basic">기본설정</a></li>
+      <li class="tabbtn"><a href="${pageContext.request.contextPath}/${sessionScope.authUser.id}/admin/category">카테고리</a></li>
+      <li class="tabbtn"><a href="${pageContext.request.contextPath}/${sessionScope.authUser.id}/admin/writeForm">글작성</a></li>
+    </ul>
+    <!-- //admin-menu -->
+
+    <div id="admin-content">
+      <form action="${pageContext.request.contextPath}/${requestScope.blogVo.id}/updateBlog" method="post" enctype="multipart/form-data">
+        <table id="admin-basic">
+          <colgroup>
+            <col style="width: 100px;">
+            <col style="">
+          </colgroup>
+          <tr>
+            <td><label for="textTitle">블로그 제목</label></td>
+            <td><input id="textTitle" type="text" name="blogTitle" value="${requestScope.blogVo.blogTitle}"></td>
+          </tr>
+          <tr>
+            <td><label>로고이미지</label></td>
+            <td class="text-left"><img src="${pageContext.request.contextPath}/upload/${requestScope.blogVo.logoFile}"></td>
+          </tr>
+          <tr>
+            <td>&nbsp;</td>
+            <td><input id="textLogo" type="file" name="file"></td>
+          </tr>
+        </table>
+        <div id="btnArea">
+          <button class="btn_l" type="submit" >기본설정변경</button>
+        </div>
+      </form>
+
+    </div>
+    <!-- //admin-content -->
+  </div>
+  <!-- //content -->
+  <div th:replace="~{/includes/blog-footer :: copy}"></div>
+</div>
+<!-- //wrap -->
+</body>
+</html>

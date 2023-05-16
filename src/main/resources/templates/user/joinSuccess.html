@@ -1,0 +1,20 @@
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="~{/includes/header :: copy}"></head>
+<body>
+    <div id="center-content">
+        <div th:replace="~{/includes/main-header :: copy}"></div>
+
+        <div id="joinSucceess">
+            <p class="welcome-message">
+                    <span> 감사합니다.<br>
+                           회원 가입 및 블로그가 성공적으로 만들어 졌습니다.
+                    </span>
+                <br><br>
+                <a th:href="@{/user/loginForm}">[로그인 하기]</a>
+            </p>
+        </div>
+
+        <div th:replace="~{/includes/main-footer :: copy}"></div>
+    </div>
+</body>
+</html>
