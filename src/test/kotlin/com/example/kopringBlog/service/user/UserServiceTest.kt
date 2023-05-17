@@ -57,6 +57,17 @@ class UserServiceTest @Autowired constructor(
     }
 
     @Test
+    @DisplayName("로그인 성공")
+    fun loginTest(){
+
+    }
+
+    @DisplayName("유저 정보 수정 성공")
+    fun userUpdateTest(){
+
+    }
+
+    @Test
     @DisplayName("유저 탈퇴 성공")
     fun userSecessionTest(){
         //given

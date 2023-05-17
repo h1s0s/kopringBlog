@@ -6,6 +6,7 @@ import com.example.kopringBlog.domain.user.User
 import com.example.kopringBlog.domain.user.UserRepository
 import com.example.kopringBlog.dto.user.UserCreateRequest
 import com.example.kopringBlog.dto.user.UserDeleteRequest
+import com.example.kopringBlog.dto.user.UserLoginRequest
 import org.springframework.data.repository.findByIdOrNull
 import org.springframework.stereotype.Service
 import org.springframework.transaction.annotation.Transactional
@@ -22,6 +23,10 @@ class UserService(
         val newBlog = Blog(request.id + "의 블로그", "default")
         userRepository.save(newUser)
         blogRepository.save(newBlog)
+    }
+
+    fun getUser(request: UserLoginRequest): User?{
+        return userRepository.findById(request.id, request.password)
     }
 
     @Transactional
