@@ -14,7 +14,7 @@ import kotlin.math.log
 class MemberController(
     private val userService: MemberService,
 ) {
-    private val log = LoggerFactory.getLogger(javaClass)
+    private val log = LoggerFactory.getLogger(MemberController::class.java)
 
     @GetMapping("/main")
     fun home(): String{
@@ -48,9 +48,11 @@ class MemberController(
     fun idCheck(@RequestParam("memberId") memberId: String): String{
         val user = userService.getMember(memberId)
         if(user == null){
+            log.info("아이디가 일치하는 회원 있음")
             return "success"
         } else {
-            return "fail"
+            log.info("아이디가 일치하는 회원 없음")
+            return "null"
         }
     }
 
@@ -64,6 +66,4 @@ class MemberController(
     fun joinSuccess(): String{
         return "member/joinSuccess"
     }
-
-
 }
