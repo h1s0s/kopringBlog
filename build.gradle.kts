@@ -31,8 +31,8 @@ dependencies {
 	implementation("com.fasterxml.jackson.module:jackson-module-kotlin:2.13.3")//JSON-코틀린 객체변화 의존성
 	implementation("org.hibernate:hibernate-entitymanager")
 	//스프링 시큐리티&스프링세션
-	implementation("org.springframework.boot:spring-boot-starter-security")
-	implementation("org.springframework.session:spring-session-core")
+//	implementation("org.springframework.boot:spring-boot-starter-security")
+//	implementation("org.springframework.session:spring-session-core")
     compileOnly("org.projectlombok:lombok")
 	runtimeOnly("com.h2database:h2:2.1.214")
 	annotationProcessor("org.projectlombok:lombok")

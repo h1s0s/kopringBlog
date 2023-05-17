@@ -4,37 +4,37 @@ import com.example.kopringBlog.domain.blog.Blog
 import javax.persistence.*
 
 @Entity
-@Table(name="Users")
-class User(
-    val id: String,
+@Table(name="Member")
+class Member(
+    val memberId: String,
     var password: String,
-    var state: UserState = UserState.NORMAL,
+    var state: MemberState = MemberState.NORMAL,
 
     @OneToOne @JoinColumn(name="blog_no")
     val blog: Blog? = null,
 
     @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
-    val userNo: Long? = null,
+    val memberNo: Long? = null,
 ) {
     companion object {
         fun fixture(
-            id: String = "아이디",
+            memberId: String = "아이디",
             password: String = "비밀번호",
-            state: UserState = UserState.NORMAL,
+            state: MemberState = MemberState.NORMAL,
             blog: Blog? = null,
-            userNo: Long? = null
-        ): User {
-            return User(
-                id = id,
+            memberNo: Long? = null
+        ): Member {
+            return Member(
+                memberId = memberId,
                 password = password,
                 state = state,
                 blog = blog,
-                userNo = userNo,
+                memberNo = memberNo,
             )
         }
     }
 
     fun stateToDeleted(){
-        this.state = UserState.DELETED
+        this.state = MemberState.DELETED
     }
 }

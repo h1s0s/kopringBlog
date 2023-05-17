@@ -1,8 +1,5 @@
 package com.example.kopringBlog.dto.blog
 
-import com.example.kopringBlog.domain.blog.Blog
-import com.example.kopringBlog.domain.user.User
-
 data class BlogUpdateRequest(
     val title: String,
     val logoPath: String?,
