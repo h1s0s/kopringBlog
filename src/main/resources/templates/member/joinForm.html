@@ -4,7 +4,7 @@
         <div id="center-content">
             <div th:replace="~{/includes/main-header :: copy}"></div>
             <div>
-                <form id="joinForm" method="post" th:action="@{/member/join}">
+                <div id="joinForm">
                     <table>
                         <colgroup>
                             <col style="width: 100px;">
@@ -36,9 +36,9 @@
                         </tr>
                     </table>
                     <div id="btnArea">
-                        <button id="btnJoin" class="btn" type="submit">회원가입</button>
+                        <button id="btnJoin" class="btn">회원가입</button>
                     </div>
-                </form>
+                </div>
             </div>
             <div th:replace="~{/includes/main-footer :: copy}"></div>
         </div>
@@ -99,5 +99,21 @@
             alert("이름을 입력해주세요");
             return false;
         }
+        $.ajax({
+            url : "/member/join",
+            type : "post",
+            contentType: 'application/json',
+            // async : async,
+            data : JSON.stringify({
+                memberId : $("#txtId").val(),
+                password : $("#txtPassword").val(),
+            }),
+
+            success : function(result) {
+            },
+            error : function(XHR, status, error) {
+                console.error(status + " : " + error);
+            }
+        });
     });
 </script>

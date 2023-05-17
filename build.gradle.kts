@@ -30,6 +30,7 @@ dependencies {
 	implementation("org.jetbrains.kotlin:kotlin-reflect:1.6.21")//코틀린 리플렉션 해결 의존성
 	implementation("com.fasterxml.jackson.module:jackson-module-kotlin:2.13.3")//JSON-코틀린 객체변화 의존성
 	implementation("org.hibernate:hibernate-entitymanager")
+	implementation("org.json:json:20200518")
 	//스프링 시큐리티&스프링세션
 //	implementation("org.springframework.boot:spring-boot-starter-security")
 //	implementation("org.springframework.session:spring-session-core")

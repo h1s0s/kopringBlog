@@ -3,13 +3,18 @@ package com.example.kopringBlog.controller
 import com.example.kopringBlog.dto.member.MemberCreateRequest
 import com.example.kopringBlog.dto.member.MemberLoginRequest
 import com.example.kopringBlog.service.member.MemberService
+import lombok.extern.slf4j.Slf4j
+import org.slf4j.LoggerFactory
 import org.springframework.stereotype.Controller
 import org.springframework.web.bind.annotation.*
+import kotlin.math.log
 
 @Controller
+@Slf4j
 class MemberController(
     private val userService: MemberService,
 ) {
+    private val log = LoggerFactory.getLogger(javaClass)
 
     @GetMapping("/main")
     fun home(): String{
@@ -49,9 +54,10 @@ class MemberController(
         }
     }
 
-    @PostMapping("/member/join")
-    fun join(@RequestBody request: MemberCreateRequest){
+    @RequestMapping("/member/join")
+    fun join(@RequestBody request: MemberCreateRequest): String{
         userService.createMember(request)
+        return "redirect:/joinSuccess"
     }
 
     @GetMapping("/member/joinSuccess")
