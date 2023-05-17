@@ -10,8 +10,8 @@ import javax.persistence.OneToMany
 
 @Entity
 class Blog(
-    val title: String,
-    val logoPath: String,
+    var title: String,
+    var logoPath: String,
 
     @OneToMany
     @JoinColumn(name = "category_id")
@@ -20,4 +20,12 @@ class Blog(
     @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
     val blogNo: Long? = null,
 ) {
+
+    fun updateTitle(title: String){
+        this.title = title
+    }
+
+    fun updateLogo(logoPath: String){
+        this.logoPath = logoPath
+    }
 }
