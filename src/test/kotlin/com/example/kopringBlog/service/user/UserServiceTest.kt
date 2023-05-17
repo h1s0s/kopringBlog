@@ -3,7 +3,9 @@ package com.example.kopringBlog.service.user
 import com.example.kopringBlog.domain.blog.BlogRepository
 import com.example.kopringBlog.domain.user.User
 import com.example.kopringBlog.domain.user.UserRepository
+import com.example.kopringBlog.domain.user.UserState
 import com.example.kopringBlog.dto.user.UserCreateRequest
+import com.example.kopringBlog.dto.user.UserDeleteRequest
 import org.assertj.core.api.AssertionsForInterfaceTypes.assertThat
 import org.junit.jupiter.api.AfterEach
 import org.junit.jupiter.api.DisplayName
@@ -52,5 +54,20 @@ class UserServiceTest @Autowired constructor(
         val results = blogRepository.findAll()
         assertThat(results).hasSize(1)
         assertThat(results[0].title).isEqualTo(newUser.id+"의 블로그")
+    }
+
+    @Test
+    @DisplayName("유저 탈퇴 성공")
+    fun userSecessionTest(){
+        //given
+        val newUser = User.fixture("test", "1234")
+        userRepository.save(newUser)
+
+        //when
+        userService.userDelete(UserDeleteRequest(newUser.userNo!!))
+
+        //then
+        val results = userRepository.findAll()
+        assertThat(results[0].state).isEqualTo(UserState.DELETED)
     }
 }

@@ -13,13 +13,13 @@ class BlogService(
 
     @Transactional
     fun updateTitle(request: BlogUpdateRequest){
-        val blog = blogRepository.findByIdOrNull(request.blogNo)
-        blog?.updateTitle(request.title)
+        val blog = blogRepository.findByIdOrNull(request.blogNo) ?: throw IllegalArgumentException("존재하지 않는 아이디입니다")
+        blog.updateTitle(request.title)
     }
 
     @Transactional
     fun updateLogo(request: BlogUpdateRequest){
-        val blog = blogRepository.findByIdOrNull(request.blogNo)
-        blog?.updateLogo(request.logoPath!!)
+        val blog = blogRepository.findByIdOrNull(request.blogNo) ?: throw IllegalArgumentException("존재하지 않는 아이디입니다")
+        blog.updateLogo(request.logoPath!!)
     }
 }

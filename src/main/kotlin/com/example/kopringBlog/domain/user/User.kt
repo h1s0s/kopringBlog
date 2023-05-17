@@ -7,7 +7,8 @@ import javax.persistence.*
 @Table(name="Users")
 class User(
     val id: String,
-    val password: String,
+    var password: String,
+    var state: UserState = UserState.NORMAL,
 
     @OneToOne @JoinColumn(name="blog_no")
     val blog: Blog? = null,
@@ -19,15 +20,21 @@ class User(
         fun fixture(
             id: String = "아이디",
             password: String = "비밀번호",
+            state: UserState = UserState.NORMAL,
             blog: Blog? = null,
             userNo: Long? = null
         ): User {
             return User(
                 id = id,
                 password = password,
+                state = state,
                 blog = blog,
                 userNo = userNo,
             )
         }
+    }
+
+    fun stateToDeleted(){
+        this.state = UserState.DELETED
     }
 }
