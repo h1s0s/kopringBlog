@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<persistence xmlns="http://xmlns.jcp.org/xml/ns/persistence" version="2.1">
+    <persistence-unit name="practice">
+<!--        엔티티 클래스 지정 경로-->
+<!--        <class></class>-->
+        <properties>
+            <property name="javax.persistence.jdbc.driver" value="org.h2.Driver"/>
+            <property name="javax.persistence.jdbc.user" value="sa"/>
+            <property name="javax.persistence.jdbc.password" value=""/>
+            <property name="javax.persistence.jdbc.url" value="jdbc:h2:tcp://localhost/~/local"/>
+            <property name="hibernate.dialect" value="org.hibernate.dialect.H2Dialect"/>
+
+            <!-- 콘솔에 하이버네이트가 실행하는 SQL문 출력 -->
+            <property name="hibernate.show_sql" value="true"/>
+            <!-- SQL 출력 시 보기 쉽게 정렬 -->
+            <property name="hibernate.format_sql" value="true"/>
+            <!-- 쿼리 출력 시 주석(comments)도 함께 출력 -->
+            <property name="hibernate.use_sql_comments" value="true"/>
+            <!-- JPA 표준에 맞춘 새로운 키 생성 전략 사용 -->
+            <property name="hibernate.id.new_generator_mappings" value="true"/>
+            <!-- 애플리케이션 실행 시점에 데이터베이스 테이블 자동 생성 -->
+            <!-- create : DROP + CREATE 기존 테이블을 삭제하고 새로 생성-->
+            <!-- create-drop : DROP + CREATE + DROP create + 종료시 DDL 제거-->
+            <!-- update : 데이터베이스 테이블과 엔티티 매핑정보를 비교해 변경사항만 수정-->
+            <!-- validate : DB와 엔티티를 비교해 차이가 있으면 경고후 애플리케이션 실행 X-->
+            <!-- none : 스키마 자동생성 기능 사용 X-->
+            <!-- 개발초기 - create or update / 테스트 - update or validate / 운영 validate or none-->
+            <property name="hibernate.hbm2ddl.auto" value="create"/>
+        </properties>
+    </persistence-unit>
+</persistence>

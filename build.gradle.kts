@@ -27,9 +27,11 @@ dependencies {
 	implementation("org.springframework.boot:spring-boot-starter-web")
 	implementation("org.springframework.boot:spring-boot-starter-thymeleaf")
 	implementation("org.springframework.boot:spring-boot-devtools")
-	implementation("org.jetbrains.kotlin:kotlin-reflect")
+	implementation("org.jetbrains.kotlin:kotlin-reflect:1.6.21")//코틀린 리플렉션 해결 의존성
+	implementation("com.fasterxml.jackson.module:jackson-module-kotlin:2.13.3")//JSON-코틀린 객체변화 의존성
+	implementation("org.hibernate:hibernate-entitymanager")
     compileOnly("org.projectlombok:lombok")
-	runtimeOnly("com.h2database:h2")
+	runtimeOnly("com.h2database:h2:2.1.214")
 	annotationProcessor("org.projectlombok:lombok")
 	testImplementation("org.springframework.boot:spring-boot-starter-test")
 
