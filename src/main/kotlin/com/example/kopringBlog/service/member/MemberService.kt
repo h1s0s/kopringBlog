@@ -2,11 +2,11 @@ package com.example.kopringBlog.service.member
 
 import com.example.kopringBlog.domain.blog.Blog
 import com.example.kopringBlog.domain.blog.BlogRepository
-import com.example.kopringBlog.domain.user.Member
-import com.example.kopringBlog.domain.user.MemberRepository
+import com.example.kopringBlog.domain.member.Member
+import com.example.kopringBlog.domain.member.MemberRepository
+import com.example.kopringBlog.domain.member.MemberState
 import com.example.kopringBlog.dto.member.MemberCreateRequest
 import com.example.kopringBlog.dto.member.MemberDeleteRequest
-import com.example.kopringBlog.dto.member.MemberLoginRequest
 import org.springframework.data.repository.findByIdOrNull
 import org.springframework.stereotype.Service
 import org.springframework.transaction.annotation.Transactional
@@ -19,7 +19,7 @@ class MemberService(
 
     @Transactional
     fun createMember(request: MemberCreateRequest){
-        val newUser = Member(request.memberId, request.password)
+        val newUser = Member(request.memberId, request.password, MemberState.NORMAL)
         val newBlog = Blog(request.memberId + "의 블로그", "default")
         memberRepository.save(newUser)
         blogRepository.save(newBlog)

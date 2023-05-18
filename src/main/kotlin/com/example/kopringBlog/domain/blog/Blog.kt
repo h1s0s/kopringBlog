@@ -1,5 +1,6 @@
 package com.example.kopringBlog.domain.blog
 
+import com.example.kopringBlog.common.BaseEntity
 import com.example.kopringBlog.domain.category.Category
 import javax.persistence.Entity
 import javax.persistence.GeneratedValue
@@ -19,7 +20,7 @@ class Blog(
 
     @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
     val blogNo: Long? = null,
-) {
+) : BaseEntity(){
 
     fun updateTitle(title: String){
         this.title = title

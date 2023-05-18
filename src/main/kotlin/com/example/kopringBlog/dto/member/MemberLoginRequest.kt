@@ -1,9 +1,5 @@
 package com.example.kopringBlog.dto.member
 
-import com.example.kopringBlog.domain.blog.Blog
-import com.example.kopringBlog.domain.user.Member
-import com.example.kopringBlog.domain.user.MemberState
-
 data class MemberLoginRequest(
     val memberId: String,
     val password: String,

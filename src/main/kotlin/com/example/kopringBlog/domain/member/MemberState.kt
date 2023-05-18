@@ -1,4 +1,4 @@
-package com.example.kopringBlog.domain.user
+package com.example.kopringBlog.domain.member
 
 enum class MemberState {
     NORMAL, //정상

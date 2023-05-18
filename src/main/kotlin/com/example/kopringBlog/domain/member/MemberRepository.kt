@@ -1,4 +1,4 @@
-package com.example.kopringBlog.domain.user
+package com.example.kopringBlog.domain.member
 
 import org.springframework.data.jpa.repository.JpaRepository
 

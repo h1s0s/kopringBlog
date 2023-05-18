@@ -1,9 +1,9 @@
 package com.example.kopringBlog.service.member
 
 import com.example.kopringBlog.domain.blog.BlogRepository
-import com.example.kopringBlog.domain.user.Member
-import com.example.kopringBlog.domain.user.MemberRepository
-import com.example.kopringBlog.domain.user.MemberState
+import com.example.kopringBlog.domain.member.Member
+import com.example.kopringBlog.domain.member.MemberRepository
+import com.example.kopringBlog.domain.member.MemberState
 import com.example.kopringBlog.dto.member.MemberCreateRequest
 import com.example.kopringBlog.dto.member.MemberDeleteRequest
 import org.assertj.core.api.AssertionsForInterfaceTypes.assertThat

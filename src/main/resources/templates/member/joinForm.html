@@ -53,12 +53,13 @@
         }
         $.ajax({
             url : "/member/idCheck",
-            type : "get",
+            type : "POST",
+            dataType : "json",
             data : userVo,
 
             //응답받을때
-            success : function(result) {
-                if (result == 'success') {//중복 없음
+            success : function(json) {
+                if(json.success == "true"){
                     var str = "";
                     str += '사용할 수 있는 아이디입니다';
                     $("#msg").html(str);
@@ -102,14 +103,16 @@
         $.ajax({
             url : "/member/join",
             type : "post",
-            contentType: 'application/json',
-            // async : async,
-            data : JSON.stringify({
+            dataType : "json",
+            data : {
                 memberId : $("#txtId").val(),
                 password : $("#txtPassword").val(),
-            }),
-
-            success : function(result) {
+            },
+            success : function(json) {
+                if(json.success == true){
+                } else {
+                    alert("회원가입에 실패했습니다. 다시 시도해주세요.");
+                }
             },
             error : function(XHR, status, error) {
                 console.error(status + " : " + error);

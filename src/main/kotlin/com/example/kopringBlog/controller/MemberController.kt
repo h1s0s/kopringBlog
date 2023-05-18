@@ -8,12 +8,13 @@ import org.json.JSONObject
 import org.slf4j.LoggerFactory
 import org.springframework.stereotype.Controller
 import org.springframework.web.bind.annotation.*
+import javax.servlet.http.HttpServletRequest
 import kotlin.math.log
 
 @Controller
 @Slf4j
 class MemberController(
-    private val userService: MemberService,
+    private val memberService: MemberService,
 ) {
     private val log = LoggerFactory.getLogger(MemberController::class.java)
 
@@ -27,35 +28,41 @@ class MemberController(
         return "member/loginForm"
     }
 
-//    @PostMapping("/users/login")
-//    fun login(@RequestBody request: UserLoginRequest, httpRequest : HttpServletRequest): String{
-//        val authUser = userService.getMember(request)
-//        return if(authUser != null){
-//            var session = httpRequest.session
-//            session.setAttribute("authUser", authUser)
-//            "redirect:/main"
-//        } else {
-//            "fail"
-//        }
-//    }
+    @PostMapping("/member/login")
+    fun login(@ModelAttribute request: MemberLoginRequest, httpRequest : HttpServletRequest, jsonObject : JSONObject): JSONObject{
+        val authUser = memberService.getMember(request.memberId)
+        if(authUser != null){
+            var session = httpRequest.session
+            session.setAttribute("authUser", authUser)
+            jsonObject.put("authUser", authUser)
+        }
+        return jsonObject
+    }
 
     @GetMapping("/member/joinForm")
     fun joinForm(): String{
         return "member/joinForm"
     }
 
-    @GetMapping("/member/idCheck")
+    @PostMapping("/member/idCheck")
     @ResponseBody
-    fun idCheck(@RequestParam("memberId") memberId: String): JSONObject{
-        val jsonObject = JSONObject()
-        userService.getMember(memberId) ?: jsonObject.put("result","success")
-        return jsonObject
+    fun idCheck(@RequestParam("memberId") memberId: String): Map<String, String>{
+        val json : MutableMap<String, String> = mutableMapOf()
+        memberService.getMember(memberId) ?: json.put("success", "true")
+        return json
     }
 
-    @RequestMapping("/member/join")
-    fun join(@RequestBody request: MemberCreateRequest): String{
-        userService.createMember(request)
-        return "redirect:/joinSuccess"
+    @PostMapping("/member/join")
+    @ResponseBody
+    fun join(@ModelAttribute request: MemberCreateRequest): Map<String, Boolean>{
+        val json : MutableMap<String, Boolean> = mutableMapOf()
+        try {
+            memberService.createMember(request)
+            json["success"] = true
+        } catch(e: Exception){
+            json["success"] = false
+        }
+        return json
     }
 
     @GetMapping("/member/joinSuccess")

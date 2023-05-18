@@ -1,5 +1,6 @@
-package com.example.kopringBlog.domain.user
+package com.example.kopringBlog.domain.member
 
+import com.example.kopringBlog.common.BaseEntity
 import com.example.kopringBlog.domain.blog.Blog
 import javax.persistence.*
 
@@ -15,7 +16,7 @@ class Member(
 
     @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
     val memberNo: Long? = null,
-) {
+) : BaseEntity(){
     companion object {
         fun fixture(
             memberId: String = "아이디",

@@ -1,6 +1,6 @@
 <div th:fragment="copy">
-    <a th:href="@{/}"> <img class="logo" th:src="@{/media/logo.jpg}" src="/assets/media/logo.jpg">
-    </a>
+<!--    <a th:href="@{/}"> <img class="logo" th:src="@{/media/logo.jpg}" src="/assets/media/logo.jpg">-->
+<!--    </a>-->
     <ul class="menu" th:if="${session.authUser == null}">
         <li><a th:href="@{/member/loginForm}">로그인</a></li>
         <li><a th:href="@{/member/joinForm}">회원가입</a></li>

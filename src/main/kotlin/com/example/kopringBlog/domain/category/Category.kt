@@ -1,5 +1,6 @@
 package com.example.kopringBlog.domain.category
 
+import com.example.kopringBlog.common.BaseEntity
 import com.example.kopringBlog.domain.post.Post
 import javax.persistence.*
 
@@ -14,5 +15,5 @@ class Category(
 
     @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
     val cateNo: Long? = null,
-) {
+) : BaseEntity(){
 }
