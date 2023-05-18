@@ -4,6 +4,7 @@ import com.example.kopringBlog.dto.member.MemberCreateRequest
 import com.example.kopringBlog.dto.member.MemberLoginRequest
 import com.example.kopringBlog.service.member.MemberService
 import lombok.extern.slf4j.Slf4j
+import org.json.JSONObject
 import org.slf4j.LoggerFactory
 import org.springframework.stereotype.Controller
 import org.springframework.web.bind.annotation.*
@@ -45,15 +46,10 @@ class MemberController(
 
     @GetMapping("/member/idCheck")
     @ResponseBody
-    fun idCheck(@RequestParam("memberId") memberId: String): String{
-        val user = userService.getMember(memberId)
-        if(user == null){
-            log.info("아이디가 일치하는 회원 있음")
-            return "success"
-        } else {
-            log.info("아이디가 일치하는 회원 없음")
-            return "null"
-        }
+    fun idCheck(@RequestParam("memberId") memberId: String): JSONObject{
+        val jsonObject = JSONObject()
+        userService.getMember(memberId) ?: jsonObject.put("result","success")
+        return jsonObject
     }
 
     @RequestMapping("/member/join")
