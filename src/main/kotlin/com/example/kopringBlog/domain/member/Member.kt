@@ -9,6 +9,7 @@ import javax.persistence.*
 class Member(
     val memberId: String,
     var password: String,
+    var memberName: String,
     var state: MemberState = MemberState.NORMAL,
 
     @OneToOne @JoinColumn(name="blog_no")
@@ -21,6 +22,7 @@ class Member(
         fun fixture(
             memberId: String = "아이디",
             password: String = "비밀번호",
+            memberName: String ="이름",
             state: MemberState = MemberState.NORMAL,
             blog: Blog? = null,
             memberNo: Long? = null
@@ -28,6 +30,7 @@ class Member(
             return Member(
                 memberId = memberId,
                 password = password,
+                memberName = memberName,
                 state = state,
                 blog = blog,
                 memberNo = memberNo,

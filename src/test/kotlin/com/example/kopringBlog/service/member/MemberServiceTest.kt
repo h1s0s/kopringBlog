@@ -45,10 +45,10 @@ class MemberServiceTest @Autowired constructor(
     @DisplayName("유저 블로그 생성 성공")
     fun memberBlogInsertTest(){
         //given
-        val newUser = Member.fixture("test", "1234")
+        val newUser = Member.fixture("test", "1234", "test")
 
         //when
-        memberService.createMember(MemberCreateRequest(newUser.memberId, newUser.password))
+        memberService.createMember(MemberCreateRequest(newUser.memberId, newUser.password, newUser.memberName))
 
         //then
         val results = blogRepository.findAll()

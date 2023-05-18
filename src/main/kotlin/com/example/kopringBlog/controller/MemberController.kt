@@ -9,6 +9,7 @@ import org.slf4j.LoggerFactory
 import org.springframework.stereotype.Controller
 import org.springframework.web.bind.annotation.*
 import javax.servlet.http.HttpServletRequest
+import javax.servlet.http.HttpSession
 import kotlin.math.log
 
 @Controller
@@ -32,7 +33,7 @@ class MemberController(
     fun login(@ModelAttribute request: MemberLoginRequest, httpRequest : HttpServletRequest, jsonObject : JSONObject): JSONObject{
         val authUser = memberService.getMember(request.memberId)
         if(authUser != null){
-            var session = httpRequest.session
+            var session: HttpSession = httpRequest.session
             session.setAttribute("authUser", authUser)
             jsonObject.put("authUser", authUser)
         }

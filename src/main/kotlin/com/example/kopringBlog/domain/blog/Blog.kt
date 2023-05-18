@@ -2,24 +2,23 @@ package com.example.kopringBlog.domain.blog
 
 import com.example.kopringBlog.common.BaseEntity
 import com.example.kopringBlog.domain.category.Category
-import javax.persistence.Entity
-import javax.persistence.GeneratedValue
-import javax.persistence.GenerationType
-import javax.persistence.Id
-import javax.persistence.JoinColumn
-import javax.persistence.OneToMany
+import com.example.kopringBlog.domain.member.Member
+import javax.persistence.*
 
 @Entity
 class Blog(
     var title: String,
     var logoPath: String,
 
+    @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
+    val blogNo: Long? = null,
+
     @OneToMany
     @JoinColumn(name = "category_id")
     val categories: MutableList<Category> = mutableListOf(),
 
-    @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
-    val blogNo: Long? = null,
+    @OneToOne(mappedBy="blog")
+    val member: Member? = null,
 ) : BaseEntity(){
 
     fun updateTitle(title: String){

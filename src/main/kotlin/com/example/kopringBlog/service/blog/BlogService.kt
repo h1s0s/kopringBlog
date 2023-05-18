@@ -1,5 +1,6 @@
 package com.example.kopringBlog.service.blog
 
+import com.example.kopringBlog.domain.blog.Blog
 import com.example.kopringBlog.domain.blog.BlogRepository
 import com.example.kopringBlog.dto.blog.BlogUpdateRequest
 import org.springframework.data.repository.findByIdOrNull
@@ -10,6 +11,11 @@ import javax.transaction.Transactional
 class BlogService(
     private val blogRepository: BlogRepository,
 ) {
+    @Transactional
+    fun getBlog(memberId: String): Blog {
+        val blog = blogRepository.findByMemberId(memberId) ?: throw IllegalArgumentException("존재하지 않는 회원입니다")
+        return blog
+    }
 
     @Transactional
     fun updateTitle(request: BlogUpdateRequest){

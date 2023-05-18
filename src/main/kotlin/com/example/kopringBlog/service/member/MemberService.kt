@@ -19,7 +19,7 @@ class MemberService(
 
     @Transactional
     fun createMember(request: MemberCreateRequest){
-        val newUser = Member(request.memberId, request.password, MemberState.NORMAL)
+        val newUser = Member(request.memberId, request.password, request.memberName, MemberState.NORMAL)
         val newBlog = Blog(request.memberId + "의 블로그", "default")
         memberRepository.save(newUser)
         blogRepository.save(newBlog)
