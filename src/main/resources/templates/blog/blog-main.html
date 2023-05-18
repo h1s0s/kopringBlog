@@ -1,23 +1,24 @@
 <html xmlns:th="http://www.thymeleaf.org">
-<!--<head th:replace="~{/includes/header :: copy}"></head>-->
+<head th:replace="~{/includes/header :: copy}"></head>
 <body>
 <div id="wrap">
-<!--  <div th:replace="~{/includes/blog-header :: copy}"></div>-->
+  <div th:replace="~{/includes/blog-header :: copy}"></div>
 
   <div id="content" class="clearfix">
     <div id="profilecate_area">
       <div id="profile">
-<!--        <img id="proImg" th:src="">-->
-
-<!--        <div id="nick" th:text="${blog.userName}">회원이름(회원아이디)님</div>-->
+        <img id="proImg">
+        <div id="nick" th:text="|${blog.memberName}(${blog.memberId})님|">회원이름(회원아이디)님</div>
       </div>
       <div id="cate">
         <div class="text-left">
           <strong>카테고리</strong>
         </div>
-<!--        <ul id="cateList" class="text-left" th:each="category : ${categorys}">-->
-<!--&lt;!&ndash;            <li><a href="${pageContext.request.contextPath}/${requestScope.blogVo.id}/catePost?cateNo=${vo.cateNo}">{vo.cateName}</a></li>&ndash;&gt;-->
-<!--        </ul>-->
+        <ul id="cateList" class="text-left" th:each="category : ${categorys}">
+            <li>
+<!--                <a href="${pageContext.request.contextPath}/${requestScope.blogVo.id}/catePost?cateNo=${vo.cateNo}">{vo.cateName}</a>-->
+            </li>
+        </ul>
       </div>
     </div>
     <!-- profilecate_area -->

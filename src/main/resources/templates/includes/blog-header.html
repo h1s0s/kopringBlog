@@ -1,16 +1,10 @@
 <div id="header" class="clearfix" th:fragment="copy">
     <h1>
-        <a th:href="@{}" th:text="">블로그 타이틀</a>
+        <a>블로그 타이틀</a>
     </h1>
     <ul class="clearfix">
-<!--        <c:choose>-->
-<!--            <c:when test="${empty sessionScope.authUser}">-->
-<!--                <li><a class="btn_s" href="${pageContext.request.contextPath}/user/loginForm">로그인</a></li>-->
-<!--            </c:when>-->
-<!--            <c:otherwise>-->
-<!--                <li><a class="btn_s" href="${pageContext.request.contextPath}/${sessionScope.authUser.id}/admin/basic">내블로그 관리</a></li>-->
-<!--                <li><a class="btn_s" href="${pageContext.request.contextPath}/user/logout">로그아웃</a></li>-->
-<!--            </c:otherwise>-->
-<!--        </c:choose>-->
+        <li th:if="${session.authUser == null}"><a class="btn_s" th:href="@{/member/loginForm}">로그인</a></li>
+        <li th:if="${session.authUser != null}"><a class="btn_s" th:href="@{/${param1}/admin/basic (param1=${session.authUser.memberId})}">내블로그 관리</a></li>
+        <li th:if="${session.authUser != null}"><a class="btn_s" th:href="@{/member/loginForm}">로그아웃</a></li>
     </ul>
 </div>

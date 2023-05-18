@@ -19,16 +19,25 @@ class MemberController(
 ) {
     private val log = LoggerFactory.getLogger(MemberController::class.java)
 
+    /**
+     * 메인 페이지
+     */
     @GetMapping("/main")
     fun home(): String{
         return "main/home"
     }
 
+    /**
+     * 로그인 페이지
+     */
     @GetMapping("/member/loginForm")
     fun loginForm(): String{
         return "member/loginForm"
     }
 
+    /**
+     * 로그인
+     */
     @PostMapping("/member/login")
     fun login(@ModelAttribute request: MemberLoginRequest, httpRequest : HttpServletRequest, jsonObject : JSONObject): JSONObject{
         val authUser = memberService.getMember(request.memberId)
@@ -40,11 +49,17 @@ class MemberController(
         return jsonObject
     }
 
+    /**
+     * 회원가입 페이지
+     */
     @GetMapping("/member/joinForm")
     fun joinForm(): String{
         return "member/joinForm"
     }
 
+    /**
+     * ID 중복 체크
+     */
     @PostMapping("/member/idCheck")
     @ResponseBody
     fun idCheck(@RequestParam("memberId") memberId: String): Map<String, String>{
@@ -53,6 +68,9 @@ class MemberController(
         return json
     }
 
+    /**
+     * 회원가입
+     */
     @PostMapping("/member/join")
     @ResponseBody
     fun join(@ModelAttribute request: MemberCreateRequest): Map<String, Boolean>{
@@ -66,6 +84,9 @@ class MemberController(
         return json
     }
 
+    /**
+     * 회원가입 성공 페이지
+     */
     @GetMapping("/member/joinSuccess")
     fun joinSuccess(): String{
         return "member/joinSuccess"
