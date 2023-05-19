@@ -25,7 +25,7 @@
             <!-- validate : DB와 엔티티를 비교해 차이가 있으면 경고후 애플리케이션 실행 X-->
             <!-- none : 스키마 자동생성 기능 사용 X-->
             <!-- 개발초기 - create or update / 테스트 - update or validate / 운영 validate or none-->
-            <property name="hibernate.hbm2ddl.auto" value="create"/>
+            <property name="hibernate.hbm2ddl.auto" value="update"/>
         </properties>
     </persistence-unit>
 </persistence>
