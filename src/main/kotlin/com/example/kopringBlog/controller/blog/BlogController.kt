@@ -1,4 +1,4 @@
-package com.example.kopringBlog.controller
+package com.example.kopringBlog.controller.blog
 
 import com.example.kopringBlog.service.blog.BlogService
 import lombok.extern.slf4j.Slf4j
