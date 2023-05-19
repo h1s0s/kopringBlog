@@ -14,7 +14,7 @@ class Blog(
     val blogNo: Long? = null,
 
     @OneToMany
-    @JoinColumn(name = "category_id")
+    @JoinColumn(name = "blog_no")
     val categories: MutableList<Category> = mutableListOf(),
 
     @OneToOne(mappedBy="blog")

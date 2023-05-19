@@ -10,7 +10,7 @@ class Category(
     val description: String,
 
     @OneToMany
-    @JoinColumn(name = "post_id")
+    @JoinColumn(name = "cate_no")
     val posts: MutableList<Post> = mutableListOf(),
 
     @Id @GeneratedValue(strategy = GenerationType.IDENTITY)

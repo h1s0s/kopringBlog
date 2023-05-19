@@ -1,68 +1,70 @@
 <html xmlns:th="http://www.thymeleaf.org">
 <head th:replace="~{/includes/header :: copy}"></head>
 <body>
-<div id="wrap">
-  <div th:replace="~{/includes/blog-header :: copy}"></div>
+    <div id="wrap">
+        <div th:replace="~{/includes/blog-header :: copy}"></div>
 
-  <div id="content" class="clearfix">
-    <div id="profilecate_area">
-      <div id="profile">
-        <img id="proImg">
-        <div id="nick" th:text="|${blog.memberName}(${blog.memberId})님|">회원이름(회원아이디)님</div>
-      </div>
-      <div id="cate">
-        <div class="text-left">
-          <strong>카테고리</strong>
-        </div>
-        <ul id="cateList" class="text-left" th:each="category : ${categorys}">
-            <li>
-<!--                <a href="${pageContext.request.contextPath}/${requestScope.blogVo.id}/catePost?cateNo=${vo.cateNo}">{vo.cateName}</a>-->
-            </li>
-        </ul>
-      </div>
-    </div>
-    <!-- profilecate_area -->
-    <div id="post_area">
-<!--      <div id="postBox" class="clearfix" th:switch="${post}">-->
-<!--        <div id="postTitle" class="text-left">-->
-<!--          <strong th:case="null">등록된 글이 없습니다.</strong>-->
-<!--          <strong th:case="*" th:text="${post.postTitle}">{requestScope.postVo.postTitle}</strong>-->
-<!--        </div>-->
-<!--        <div id="postDate" class="text-left">-->
-<!--          <strong th:case="*">${requestScope.postVo.regDate}</strong>-->
-<!--        </div>-->
-<!--        <div id="postNick" th:case="*" th:text="">{requestScope.blogVo.userName}(${requestScope.blogVo.id})님</div>-->
-<!--      </div>-->
-<!--      <div id="post" th:case="*" th:text="">{requestScope.postVo.postContent}</div>-->
-<!--    </div>-->
+        <div id="content" class="clearfix">
+            <div id="profilecate_area">
+                <div id="profile">
+                    <img id="proImg">
+                    <div id="nick" th:text="|${blog.memberName}(${blog.memberId})님|">회원이름(회원아이디)님</div>
+                </div>
+                <div id="cate">
+                    <div class="text-left">
+                        <strong>카테고리</strong>
+                    </div>
+                    <ul id="cateList" class="text-left" th:each="category : ${blog.blog.categories}">
+                        <li>
+                            <a th:text="${category.name}">카테고리명</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            <!-- profilecate_area -->
+            <div id="post_area">
+                <div id="postBox" class="clearfix" th:switch="${blog.blog.categories[0].posts[0]}">
+                    <div id="postTitle" class="text-left">
+                        <strong th:case="null">등록된 글이 없습니다.</strong>
+                        <strong th:case="*" th:text="${blog.blog.categories[0].posts[0].title}">
+                            포스트 제목
+                        </strong>
+                    </div>
+                    <div id="postDate" class="text-left">
+                        <strong th:case="*" th:text="${blog.blog.categories[0].posts[0].createdDt}">포스트 작성일시</strong>
+                    </div>
+                    <div id="postNick" th:case="*" th:text="|${blog.memberName}(${blog.memberId})님|">
+                        회원이름(회원아이디)님
+                    </div>
+                    <div id="post" th:case="*" th:text="${blog.blog.categories[0].posts[0].content}">포스트 내용</div>
+                </div>
+            </div>
 
-      <div id="list">
-        <div id="listTitle" class="text-left">
-          <strong>카테고리의 글</strong>
+            <div id="list">
+                <div id="listTitle" class="text-left">
+                    <strong>카테고리의 글</strong>
+                </div>
+                <table>
+                    <colgroup>
+                        <col style="">
+                        <col style="width: 20%;">
+                    </colgroup>
+                    <!--          <c:forEach items="${requestScope.postList}" var="vo">-->
+                    <!--            <tr th:each="post : ${posts}">-->
+                    <!--              <td class="text-left">-->
+                    <!--                <a th:href="@{/${param1}/read/${param2}?postNo=${param3} (param1=${requestScope.blogVo.id}, param2=${requestScope.categoryVo.cateNo}, param3=${post.postNo})}"-->
+                    <!--                  th:text="${post.title}">포스트 제목</a></td>-->
+                    <!--              <td class="text-right" th:text="${vo.regDate}"></td>-->
+                    <!--            </tr>-->
+                    <!--          </c:forEach>-->
+                </table>
+            </div>
+            <!-- //list -->
         </div>
-        <table>
-          <colgroup>
-            <col style="">
-            <col style="width: 20%;">
-          </colgroup>
-<!--          <c:forEach items="${requestScope.postList}" var="vo">-->
-<!--            <tr th:each="post : ${posts}">-->
-<!--              <td class="text-left">-->
-<!--                <a th:href="@{/${param1}/read/${param2}?postNo=${param3} (param1=${requestScope.blogVo.id}, param2=${requestScope.categoryVo.cateNo}, param3=${post.postNo})}"-->
-<!--                  th:text="${post.title}">포스트 제목</a></td>-->
-<!--              <td class="text-right" th:text="${vo.regDate}"></td>-->
-<!--            </tr>-->
-<!--          </c:forEach>-->
-        </table>
-      </div>
-      <!-- //list -->
+        <!-- //post_area -->
     </div>
-    <!-- //post_area -->
-  </div>
-  <!-- //content -->
-  <div class=></div>
-<!--  <div th:replace="~{/includes/blog-footer :: copy}"></div>-->
-</div>
+    <!-- //content -->
+    <div th:replace="~{/includes/blog-footer :: copy}"></div>
 <!-- //wrap -->
 </body>
 </html>
