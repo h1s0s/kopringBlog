@@ -1,5 +1,6 @@
 package com.example.kopringBlog.controller.member
 
+import com.example.kopringBlog.const.CommonConst
 import com.example.kopringBlog.dto.member.MemberCreateRequest
 import com.example.kopringBlog.dto.member.MemberLoginRequest
 import com.example.kopringBlog.service.member.MemberService
@@ -22,7 +23,7 @@ class MemberApiController(
         val authUser = memberService.getMember(request.memberId)
         if(authUser != null){
             var session: HttpSession = httpRequest.session
-            session.setAttribute("authUser", authUser)
+            session.setAttribute(CommonConst.LOGIN_MEMBER, authUser)
             jsonObject.put("authUser", authUser)
         }
         return jsonObject
