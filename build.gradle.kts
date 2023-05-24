@@ -6,6 +6,7 @@ plugins {
 	kotlin("jvm") version "1.6.21"
 	kotlin("plugin.spring") version "1.6.21"
 	kotlin("plugin.jpa") version "1.6.21"
+	kotlin("kapt") version "1.6.21"//Querydsl
 }
 
 group = "com.example"
@@ -34,6 +35,10 @@ dependencies {
 	//스프링 시큐리티&스프링세션
 //	implementation("org.springframework.boot:spring-boot-starter-security")
 //	implementation("org.springframework.session:spring-session-core")
+	//쿼리dsl
+	implementation("com.querydsl:querydsl-jpa:5.0.0")
+	kapt("com.querydsl:querydsl-apt:5.0.0:jpa")
+	kapt("org.springframework.boot:spring-boot-configuration-processor")
     compileOnly("org.projectlombok:lombok")
 	runtimeOnly("com.h2database:h2:2.1.214")
 	annotationProcessor("org.projectlombok:lombok")

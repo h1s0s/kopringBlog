@@ -5,6 +5,7 @@ import com.example.kopringBlog.domain.blog.BlogRepository
 import com.example.kopringBlog.domain.member.Member
 import com.example.kopringBlog.domain.member.MemberRepository
 import com.example.kopringBlog.dto.blog.BlogUpdateRequest
+import com.example.kopringBlog.repository.member.MemberQueryRepository
 import org.springframework.data.repository.findByIdOrNull
 import org.springframework.stereotype.Service
 import javax.transaction.Transactional
@@ -13,10 +14,11 @@ import javax.transaction.Transactional
 class BlogService(
     private val blogRepository: BlogRepository,
     private val memberRepository: MemberRepository,
+    private val memberQueryRepository: MemberQueryRepository,
 ) {
     @Transactional
     fun getBlog(memberId: String): Member {
-        return memberRepository.findByMemberId(memberId) ?: throw IllegalArgumentException("존재하지 않는 회원입니다")
+        return memberQueryRepository.find(memberId) ?: throw IllegalArgumentException("존재하지 않는 회원입니다")
     }
 
     @Transactional

@@ -9,6 +9,7 @@ import com.example.kopringBlog.domain.member.MemberRepository
 import com.example.kopringBlog.domain.member.MemberState
 import com.example.kopringBlog.dto.member.MemberCreateRequest
 import com.example.kopringBlog.dto.member.MemberDeleteRequest
+import com.example.kopringBlog.repository.member.MemberQueryRepository
 import org.springframework.data.repository.findByIdOrNull
 import org.springframework.stereotype.Service
 import org.springframework.transaction.annotation.Transactional
@@ -18,6 +19,7 @@ class MemberService(
     private val memberRepository: MemberRepository,
     private val blogRepository: BlogRepository,
     private val categoryRepository: CategoryRepository,
+    private val memberQueryRepository: MemberQueryRepository,
 ) {
 
     @Transactional
@@ -32,7 +34,7 @@ class MemberService(
 
     @Transactional
     fun getMember(memberId: String): Member?{
-        return memberRepository.findByMemberId(memberId)
+        return memberQueryRepository.find(memberId)
     }
 
     @Transactional

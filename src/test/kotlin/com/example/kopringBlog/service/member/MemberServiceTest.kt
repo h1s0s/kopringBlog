@@ -6,6 +6,7 @@ import com.example.kopringBlog.domain.member.MemberRepository
 import com.example.kopringBlog.domain.member.MemberState
 import com.example.kopringBlog.dto.member.MemberCreateRequest
 import com.example.kopringBlog.dto.member.MemberDeleteRequest
+import com.example.kopringBlog.repository.member.MemberQueryRepository
 import org.assertj.core.api.AssertionsForInterfaceTypes.assertThat
 import org.junit.jupiter.api.AfterEach
 import org.junit.jupiter.api.DisplayName
@@ -18,7 +19,9 @@ class MemberServiceTest @Autowired constructor(
     private val memberService: MemberService,
     private val memberRepository: MemberRepository,
     private val blogRepository: BlogRepository,
-) {
+    private val memberQueryRepository: MemberQueryRepository,
+
+    ) {
     @AfterEach
     fun clean(){
         memberRepository.deleteAll()
