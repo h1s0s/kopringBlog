@@ -4,6 +4,7 @@ import com.example.kopringBlog.const.CommonConst
 import com.example.kopringBlog.dto.member.MemberCreateRequest
 import com.example.kopringBlog.dto.member.MemberLoginRequest
 import com.example.kopringBlog.service.member.MemberService
+import com.example.kopringBlog.util.logger
 import lombok.extern.slf4j.Slf4j
 import org.json.JSONObject
 import org.springframework.web.bind.annotation.*
@@ -18,7 +19,7 @@ class MemberApiController(
     /**
      * 로그인
      */
-    @GetMapping
+    @PostMapping("/login")
     fun login(@ModelAttribute request: MemberLoginRequest, httpRequest : HttpServletRequest, jsonObject : JSONObject): JSONObject {
         val authUser = memberService.getMember(request.memberId)
         if(authUser != null){
@@ -27,6 +28,13 @@ class MemberApiController(
             jsonObject.put("authUser", authUser)
         }
         return jsonObject
+    }
+
+    /**
+     * 로그아웃
+     */
+    @PostMapping("/logout")
+    fun logout(httpRequest : HttpServletRequest) {
     }
 
     /**
